@@ -1,0 +1,6 @@
+{
+  "name": "mard/ZandronumPHP",
+    "autoload": {
+        "psr-0": { "ZandronumPHP": "lib/" }
+    }
+}

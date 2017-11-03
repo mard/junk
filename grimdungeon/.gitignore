@@ -1,0 +1,6 @@
+
+Thumbs.db
+*.pyc
+wav/*.wav
+wav/AUTHORS
+*.suo
