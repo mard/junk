@@ -1,1 +1,1 @@
-Sample Azure DevOps extension
+Generates Unique Codenames For Work Items

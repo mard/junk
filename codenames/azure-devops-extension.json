@@ -1,12 +1,17 @@
 {
     "manifestVersion": 1,
-    "id": "samples",
-    "publisher": "ms-samples",
-    "version": "1.0.381",
-    "name": "Extension Sample",
-    "description": "Azure DevOps extension sample",
+    "id": "codenames",
+    "publisher": "mard",
+    "version": "0.0.6",
+    "name": "Codenames",
+    "description": "Generates Unique Codenames For Work Items",
+    "public": false,
     "categories": [
-        "Azure Pipelines"
+        "Plan and track"
+    ],
+    "tags": [
+        "Work Item",
+        "Work Item control"
     ],
     "targets": [
         {
