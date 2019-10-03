@@ -8,7 +8,7 @@ import {
 import * as SDK from "azure-devops-extension-sdk";
 import { Button } from "azure-devops-ui/Button";
 import * as React from "react";
-import { showRootComponent } from "../../Common";
+import { showRootComponent } from "./Common";
 
 interface WorkItemFormGroupComponentState {
   eventContent: string;
