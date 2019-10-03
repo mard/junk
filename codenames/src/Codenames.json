@@ -10,7 +10,7 @@
             "properties": {
                 "name": "Codenames",
                 "uri": "dist/codenames.html",
-                "height": 600
+                "height": 150
             }
         }
     ],

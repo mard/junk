@@ -12,13 +12,15 @@ import { showRootComponent } from "./Common";
 
 interface WorkItemFormGroupComponentState {
   eventContent: string;
+  id: string;
 }
 
 class WorkItemFormGroupComponent extends React.Component<{},  WorkItemFormGroupComponentState> {
   constructor(props: {}) {
     super(props);
     this.state = {
-      eventContent: ""
+      eventContent: "",
+      id: ""
     };
   }
 
@@ -34,9 +36,15 @@ class WorkItemFormGroupComponent extends React.Component<{},  WorkItemFormGroupC
         <Button
           className="sample-work-item-button"
           text="Click me to change title!"
-          onClick={() => this.onClick()}
+          onClick={() => this.onClickSet()}
         />
-        <div className="sample-work-item-events">{this.state.eventContent}</div>
+        <Button
+          className="sample-work-item-button"
+          text="Click me to get id!"
+          onClick={() => this.onClickGet()}
+        />
+        <p><div className="sample-work-item-events">{this.state.eventContent}</div></p>
+        <p><div className="sample-work-item-id">{this.state.id}</div></p>
       </div>
     );
   }
@@ -89,7 +97,7 @@ class WorkItemFormGroupComponent extends React.Component<{},  WorkItemFormGroupC
     });
   }
 
-  private async onClick() {
+  private async onClickSet() {
     const workItemFormService = await SDK.getService<IWorkItemFormService>(
       WorkItemTrackingServiceIds.WorkItemFormService
     );
@@ -97,6 +105,14 @@ class WorkItemFormGroupComponent extends React.Component<{},  WorkItemFormGroupC
       "System.Title",
       "Title set from your group extension!"
     );
+  }
+
+  private async onClickGet() {
+    const workItemFormService = await SDK.getService<IWorkItemFormService>(
+      WorkItemTrackingServiceIds.WorkItemFormService
+    );
+    const workItemId = (await workItemFormService.getFieldValue('System.Id')) as string;
+    this.setState({id: `id is ${workItemId}`})
   }
 }
 
