@@ -4,7 +4,7 @@
     "publisher": "mard",
     "version": "0.0.6",
     "name": "Codenames",
-    "description": "Generates Unique Codenames For Work Items",
+    "description": "Generates unique codenames for work items.",
     "public": false,
     "categories": [
         "Plan and track"
@@ -20,6 +20,10 @@
     ],
     "icons": {
         "default": "logo.png"
+    },
+    "branding": {
+        "color": "rgb(127, 0, 255)",
+        "theme": "light"
     },
     "content": {
         "details": {
