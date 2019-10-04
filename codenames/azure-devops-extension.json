@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "codenames",
     "publisher": "mard",
-    "version": "0.0.6",
+    "version": "0.0.10",
     "name": "Codenames",
     "description": "Generates unique codenames for work items.",
     "public": false,
@@ -23,7 +23,7 @@
     },
     "branding": {
         "color": "rgb(127, 0, 255)",
-        "theme": "light"
+        "theme": "dark"
     },
     "content": {
         "details": {
