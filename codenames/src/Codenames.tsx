@@ -10,9 +10,12 @@ import { Button } from "azure-devops-ui/Button";
 import * as React from "react";
 import { showRootComponent } from "./Common";
 
+var output = console.log;
+
 interface WorkItemFormGroupComponentState {
   eventContent: string;
   id: string;
+  fields: string;
 }
 
 class WorkItemFormGroupComponent extends React.Component<{},  WorkItemFormGroupComponentState> {
@@ -20,7 +23,8 @@ class WorkItemFormGroupComponent extends React.Component<{},  WorkItemFormGroupC
     super(props);
     this.state = {
       eventContent: "",
-      id: ""
+      id: "",
+      fields: ""
     };
   }
 
@@ -43,8 +47,15 @@ class WorkItemFormGroupComponent extends React.Component<{},  WorkItemFormGroupC
           text="Click me to get id!"
           onClick={() => this.onClickGet()}
         />
+        <Button
+          className="sample-work-item-button"
+          text="Get fields"
+          onClick={() => this.onClickGetFields()}
+        />
+        <p>Hi there</p>
         <p><div className="sample-work-item-events">{this.state.eventContent}</div></p>
         <p><div className="sample-work-item-id">{this.state.id}</div></p>
+        <p><div className="sample-work-item-id">{this.state.fields}</div></p>
       </div>
     );
   }
@@ -57,6 +68,7 @@ class WorkItemFormGroupComponent extends React.Component<{},  WorkItemFormGroupC
           this.setState({
             eventContent: `onFieldChanged - ${JSON.stringify(args)}`
           });
+          output(JSON.stringify(this.state));
         },
 
         // Called when a new work item is being loaded in the UI
@@ -64,6 +76,7 @@ class WorkItemFormGroupComponent extends React.Component<{},  WorkItemFormGroupC
           this.setState({
             eventContent: `onLoaded - ${JSON.stringify(args)}`
           });
+          output(JSON.stringify(this.state));
         },
 
         // Called when the active work item is being unloaded in the UI
@@ -71,6 +84,7 @@ class WorkItemFormGroupComponent extends React.Component<{},  WorkItemFormGroupC
           this.setState({
             eventContent: `onUnloaded - ${JSON.stringify(args)}`
           });
+          output(JSON.stringify(this.state));
         },
 
         // Called after the work item has been saved
@@ -78,6 +92,8 @@ class WorkItemFormGroupComponent extends React.Component<{},  WorkItemFormGroupC
           this.setState({
             eventContent: `onSaved - ${JSON.stringify(args)}`
           });
+          this.onClickSet();
+          output(JSON.stringify(this.state));
         },
 
         // Called when the work item is reset to its unmodified state (undo)
@@ -85,6 +101,7 @@ class WorkItemFormGroupComponent extends React.Component<{},  WorkItemFormGroupC
           this.setState({
             eventContent: `onReset - ${JSON.stringify(args)}`
           });
+          output(JSON.stringify(this.state));
         },
 
         // Called when the work item has been refreshed from the server
@@ -92,6 +109,7 @@ class WorkItemFormGroupComponent extends React.Component<{},  WorkItemFormGroupC
           this.setState({
             eventContent: `onRefreshed - ${JSON.stringify(args)}`
           });
+          output(JSON.stringify(this.state));
         }
       };
     });
@@ -102,9 +120,10 @@ class WorkItemFormGroupComponent extends React.Component<{},  WorkItemFormGroupC
       WorkItemTrackingServiceIds.WorkItemFormService
     );
     workItemFormService.setFieldValue(
-      "System.Title",
-      "Title set from your group extension!"
+      "Custom.Codenames",
+      `${Math.floor(Math.random() * 100) + 1}`
     );
+    workItemFormService.save();
   }
 
   private async onClickGet() {
@@ -113,6 +132,16 @@ class WorkItemFormGroupComponent extends React.Component<{},  WorkItemFormGroupC
     );
     const workItemId = (await workItemFormService.getFieldValue('System.Id')) as string;
     this.setState({id: `id is ${workItemId}`})
+    output(JSON.stringify(this.state));
+  }
+
+  private async onClickGetFields() {
+    const workItemFormService = await SDK.getService<IWorkItemFormService>(
+      WorkItemTrackingServiceIds.WorkItemFormService
+    );
+    const data = (await workItemFormService.getFields());
+    this.setState({fields: `Fields are ${JSON.stringify(data)}`})
+    output(JSON.stringify(this.state));
   }
 }
 
