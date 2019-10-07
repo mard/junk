@@ -10,6 +10,7 @@ const entries = {
 module.exports = {
     entry: entries,
     output: {
+        publicPath: "/dist/",
         filename: "[name].js"
     },
     resolve: {
@@ -49,5 +50,10 @@ module.exports = {
     },
     plugins: [
         new CopyWebpackPlugin([ { from: "**/*.html", context: "src" }])
-    ]
+    ],
+    devtool: "inline-source-map",
+    devServer: {
+      https: true,
+      port: 3000
+    }
 };

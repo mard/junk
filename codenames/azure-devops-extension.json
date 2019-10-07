@@ -2,12 +2,12 @@
     "manifestVersion": 1,
     "id": "codenames",
     "publisher": "mard",
-    "version": "0.0.10",
+    "version": "0.0.12",
     "name": "Codenames",
-    "description": "Generates unique codenames for work items.",
+    "description": "Generate unique codenames for work items.",
     "public": false,
     "categories": [
-        "Plan and track"
+        "Azure Boards"
     ],
     "tags": [
         "Work Item",
@@ -39,5 +39,23 @@
             "path": "dist",
             "addressable": true
         }
+    ],
+    "contributions": [
+        {  
+            "id": "sample-work-item-form-control",
+            "type": "ms.vss-work-web.work-item-form-control",
+            "description": "Custom work item form control",
+            "targets": [
+                "ms.vss-work-web.work-item-form"
+            ],
+            "properties": {
+                "name": "Codenames",
+                "uri": "dist/codenames.html",
+                "height": 150
+            }
+        }
+    ],
+    "scopes": [
+        "vso.work"
     ]
 }
