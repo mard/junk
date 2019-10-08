@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "codenames",
     "publisher": "mard",
-    "version": "0.0.12",
+    "version": "0.0.15",
     "name": "Codenames",
     "description": "Generate unique codenames for work items.",
     "public": false,
@@ -13,10 +13,11 @@
         "Work Item",
         "Work Item control"
     ],
+    "scopes": [
+        "vso.work"
+    ],
     "targets": [
-        {
-            "id": "Microsoft.VisualStudio.Services"
-        }
+        { "id": "Microsoft.VisualStudio.Services" }
     ],
     "icons": {
         "default": "logo.png"
@@ -68,8 +69,5 @@
                 ]
             }
         }
-    ],
-    "scopes": [
-        "vso.work"
     ]
 }
