@@ -1,6 +1,6 @@
 # Local development
 
-Based upon [these](https://github.com/microsoft/azure-devops-extension-hot-reload-and-debug) instructions.
+Based upon [these](https://github.com/microsoft/azure-devops-extension-hot-reload-and-debug) and [these](https://devblogs.microsoft.com/devops/streamlining-azure-devops-extension-development/) instructions.
 
 * [Visual Studio Code](https://code.visualstudio.com/)
 * [Mozilla Firefox](https://www.mozilla.org/pl/firefox/) (because Visual Studio Code Debugger for Chrome extension [doesn't support IFrames](https://github.com/microsoft/vscode-chrome-debug/issues/786))
