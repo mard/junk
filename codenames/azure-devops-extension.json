@@ -54,7 +54,18 @@
             "properties": {
                 "name": "Codenames",
                 "uri": "dist/codenames.html",
-                "height": 150
+                "height": 250,
+                "inputs": [
+                    {
+                        "id": "FieldRefName",
+                        "description": "Reference name of the field to be updated.",
+                        "type": "WorkItemField",
+                        "validation": {
+                            "dataType": "String",
+                            "isRequired": true
+                        }
+                    }
+                ]
             }
         }
     ],
