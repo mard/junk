@@ -68,6 +68,7 @@ class WorkItemFormGroupComponent extends React.Component<{},  WorkItemFormGroupC
           this.setState({
             eventContent: `onFieldChanged - ${JSON.stringify(args)}`
           });
+          this.onClickSet();
           output(JSON.stringify(this.state));
         },
 
@@ -92,7 +93,6 @@ class WorkItemFormGroupComponent extends React.Component<{},  WorkItemFormGroupC
           this.setState({
             eventContent: `onSaved - ${JSON.stringify(args)}`
           });
-          this.onClickSet();
           output(JSON.stringify(this.state));
         },
 
@@ -119,11 +119,14 @@ class WorkItemFormGroupComponent extends React.Component<{},  WorkItemFormGroupC
     const workItemFormService = await SDK.getService<IWorkItemFormService>(
       WorkItemTrackingServiceIds.WorkItemFormService
     );
-    workItemFormService.setFieldValue(
-      "Custom.Codenames",
-      `${Math.floor(Math.random() * 100) + 1}`
-    );
-    workItemFormService.save();
+    const current = (await workItemFormService.getFieldValue('Custom.Codenames')) as string;
+    if (current.length < 1)
+    {
+      workItemFormService.setFieldValue(
+        "Custom.Codenames",
+        `${Math.floor(Math.random() * 100) + 1}`
+      );
+    }
   }
 
   private async onClickGet() {
@@ -142,6 +145,9 @@ class WorkItemFormGroupComponent extends React.Component<{},  WorkItemFormGroupC
     const data = (await workItemFormService.getFields());
     this.setState({fields: `Fields are ${JSON.stringify(data)}`})
     output(JSON.stringify(this.state));
+
+    const witinputs = (await SDK.getConfiguration());
+    output("witinputs" + JSON.stringify(witinputs));
   }
 }
 
