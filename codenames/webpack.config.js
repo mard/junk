@@ -2,22 +2,23 @@ const path = require("path");
 const fs = require("fs");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
-// Webpack entry points. Mapping from resulting bundle name to the source file entry.
-const entries = {
-    codenames: './src/Codenames'
-}
+const entries = {};
+const srcDir = path.join(__dirname, "src");
+fs.readdirSync(srcDir)
+  .filter(dir => fs.statSync(path.join(srcDir, dir)).isDirectory())
+  .forEach(dir => (entries[dir] = "./" + path.join("src", dir, dir)));
 
 module.exports = {
     entry: entries,
     output: {
         publicPath: "/dist/",
-        filename: "[name].js"
+        filename: "[name]/[name].js"
     },
     resolve: {
         extensions: [".ts", ".tsx", ".js"],
         alias: {
             "azure-devops-extension-sdk": path.resolve("node_modules/azure-devops-extension-sdk")
-        },
+        }
     },
     stats: {
         warnings: false
@@ -51,6 +52,7 @@ module.exports = {
     plugins: [
         new CopyWebpackPlugin([ { from: "**/*.html", context: "src" }])
     ],
+    target: "web",
     devtool: "inline-source-map",
     devServer: {
       https: true,

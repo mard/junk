@@ -8,7 +8,7 @@ import {
 import * as SDK from "azure-devops-extension-sdk";
 import { Button } from "azure-devops-ui/Button";
 import * as React from "react";
-import { showRootComponent } from "./Common";
+import * as ReactDOM from "react-dom";
 
 var output = console.log;
 
@@ -151,4 +151,4 @@ class WorkItemFormGroupComponent extends React.Component<{},  WorkItemFormGroupC
   }
 }
 
-showRootComponent(<WorkItemFormGroupComponent />);
+ReactDOM.render(<WorkItemFormGroupComponent />, document.getElementById("root"));

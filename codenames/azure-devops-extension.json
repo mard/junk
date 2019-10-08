@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "codenames",
     "publisher": "mard",
-    "version": "0.0.15",
+    "version": "0.0.16",
     "name": "Codenames",
     "description": "Generate unique codenames for work items.",
     "public": false,
@@ -54,7 +54,7 @@
             ],
             "properties": {
                 "name": "Codenames",
-                "uri": "dist/codenames.html",
+                "uri": "dist/codenames/codenames.html",
                 "height": 250,
                 "inputs": [
                     {
