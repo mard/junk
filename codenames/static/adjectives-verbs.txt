@@ -22,8 +22,12 @@ happy
 sad
 magical
 spooky
+creepy
+grim
+dark
 haunted
 evil
+damned
 holy
 ultimate
 extreme
@@ -73,13 +77,19 @@ helpful
 clumsy
 sore
 sleepy
+helpful
+tired
 dangerous
+nuclear
+radioactive
 sarcastic
 cruel
 clever
 silly
 cool
 mighty
+fallen
+ancient
 upset
 horny
 broken
@@ -105,6 +115,7 @@ swimming
 flying
 annoying
 singing
+rising
 black
 white
 montain
@@ -116,3 +127,5 @@ platinum
 silver
 wooden
 rusty
+steel
+iron
