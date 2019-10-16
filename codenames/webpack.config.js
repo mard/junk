@@ -1,6 +1,6 @@
 const path = require("path");
 const fs = require("fs");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 const entries = {};
 const srcDir = path.join(__dirname, "src");
@@ -46,11 +46,22 @@ module.exports = {
             {
                 test: /\.html$/,
                 loader: "file-loader"
+            },
+            {
+                test: /\.json$/,
+                loader: 'json-loader'
             }
         ]
     },
     plugins: [
-        new CopyWebpackPlugin([ { from: "**/*.html", context: "src" }])
+        new CopyPlugin([ { from: "**/*.html", context: "src" }]),
+        new CopyPlugin([ { from: '*.txt', context: 'assets', to: '[name].json',
+              transform(content, path) {
+                var array = content.toString().replace(/\r?\n|\r/g, " ").trim().split(" ").sort();
+                return JSON.stringify(array, null, 2);
+              }
+            }
+        ])
     ],
     target: "web",
     devtool: "inline-source-map",
