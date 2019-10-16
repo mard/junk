@@ -57,7 +57,7 @@ module.exports = {
         new CopyPlugin([ { from: "**/*.html", context: "src" }]),
         new CopyPlugin([ { from: '*.txt', context: 'assets', to: '[name].json',
               transform(content, path) {
-                var array = content.toString().replace(/\r?\n|\r/g, " ").trim().split(" ").sort();
+                var array = content.toString().replace(/\r?\n|\r/g, ";").trim(';').split(";").sort();
                 return JSON.stringify(array, null, 2);
               }
             }
