@@ -7,11 +7,11 @@ The goal of this project is to help generate short phrases that would be used an
 Taking into consideration the above mentioned goal, following rules are mentioned.
 
 * Do not use words that reference actual objects, places, people, works i.e. do not use proper nouns.
-* Do not use words referencing politics, religion, nationalities and ethnic/sexual groups.
+* Do not use words referencing politics, religion, nationalities, drugs, and ethnic/sexual groups.
 * Do not use words that are spelled the same and/or sound the same and are conficting with rules above (e.g. turkey or juice)
 * Avoid using words related to death, sex or violence.
 * Avoid using other words that are deemed controversial on cultural grounds or words that could cause strong emotions.
-* Avoid using words that are widely related to software development process to avoid confusion (e.g. change, program, fix, bug, branch etc.)
+* Avoid using words that are widely related to software development process to avoid confusion (e.g. program, fix, bug, branch, fork etc.)
 * Avoid using uncommon words that would be unknown to most of the people.
 * Prefer using easy to remember, common, universally known things or ideas.
 * Consider Emoji as a good point of reference.
