@@ -5,6 +5,7 @@ Based upon [these](https://github.com/microsoft/azure-devops-extension-hot-reloa
 * [Visual Studio Code](https://code.visualstudio.com/)
 * [Mozilla Firefox](https://www.mozilla.org/pl/firefox/) (because Visual Studio Code Debugger for Chrome extension [doesn't support IFrames](https://github.com/microsoft/vscode-chrome-debug/issues/786))
 * [Debugger for Firefox Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=firefox-devtools.vscode-firefox-debug)
+* [Node.js](https://nodejs.org)
 * The [tfx-cli](https://www.npmjs.com/package/tfx-cli) npm package `npm install -g tfx-cli`
 * The [webpack](https://www.npmjs.com/package/webpack) npm package `npm install -g webpack`
 * The [webpack-dev-server](https://www.npmjs.com/package/webpack-dev-server) npm package `npm install -g webpack-dev-server`
@@ -65,6 +66,8 @@ Right click on your development extension and click *View Extension*, click *Get
 In [your Azure DevOps organization](https://dev.azure.com), click *Organization settings* on bottom left of your screen. Go to *Process*, and add the control to the desired work item types.
 
 ### Compile, launch and debug
+
+First, run `npm install` to install required node modules.
 
 After you `npm run compile`'d your project, you can run the local development web server with your compiled extension with `webpack-dev-server --mode development` command.
 
