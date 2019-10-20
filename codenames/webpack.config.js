@@ -1,6 +1,7 @@
 const path = require("path");
 const fs = require("fs");
 const CopyPlugin = require("copy-webpack-plugin");
+var ConvertTxtToJsonPlugin = require('./webpack-convert-txt-to-json.js');
 
 const entries = {};
 const srcDir = path.join(__dirname, "src");
@@ -49,7 +50,7 @@ module.exports = {
             },
             {
                 test: /\.json$/,
-                loader: 'json-loader'
+                loader: 'raw-loader'
             }
         ]
     },
@@ -61,7 +62,8 @@ module.exports = {
                 return JSON.stringify(array, null, 2);
               }
             }
-        ])
+        ]),
+        //new ConvertTxtToJsonPlugin()
     ],
     target: "web",
     devtool: "inline-source-map",
