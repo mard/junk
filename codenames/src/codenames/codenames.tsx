@@ -10,12 +10,32 @@ import { Button } from "azure-devops-ui/Button";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
+export const getFetch = async (request: RequestInfo): Promise<any> => {
+  return new Promise(resolve => {
+    fetch(request)
+      .then(response => response.json())
+      .then(body => {
+        resolve(body);
+      });
+  });
+};
+
+function capitalizeFirstLetter(text:string) {
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}
+
+function getRandomOfArray(items:string[]) {
+  return items[Math.floor(Math.random() * items.length)];
+}
+
 var output = console.log;
 
 interface WorkItemFormGroupComponentState {
   eventContent: string;
   id: string;
   fields: string;
+  nouns: string[][];
+  adjectives_verbs: string[][];
 }
 
 class WorkItemFormGroupComponent extends React.Component<{},  WorkItemFormGroupComponentState> {
@@ -24,7 +44,9 @@ class WorkItemFormGroupComponent extends React.Component<{},  WorkItemFormGroupC
     this.state = {
       eventContent: "",
       id: "",
-      fields: ""
+      fields: "",
+      nouns: [],
+      adjectives_verbs: []
     };
   }
 
@@ -68,7 +90,6 @@ class WorkItemFormGroupComponent extends React.Component<{},  WorkItemFormGroupC
           this.setState({
             eventContent: `onFieldChanged - ${JSON.stringify(args)}`
           });
-          this.onClickSet();
           output(JSON.stringify(this.state));
         },
 
@@ -77,7 +98,9 @@ class WorkItemFormGroupComponent extends React.Component<{},  WorkItemFormGroupC
           this.setState({
             eventContent: `onLoaded - ${JSON.stringify(args)}`
           });
-          output(JSON.stringify(this.state));
+
+          getFetch("./../nouns.json").then(x => this.state.nouns.push(x));
+          getFetch("./../adjectives-verbs.json").then(x => this.state.adjectives_verbs.push(x));
         },
 
         // Called when the active work item is being unloaded in the UI
@@ -119,23 +142,25 @@ class WorkItemFormGroupComponent extends React.Component<{},  WorkItemFormGroupC
     const workItemFormService = await SDK.getService<IWorkItemFormService>(
       WorkItemTrackingServiceIds.WorkItemFormService
     );
-    const current = (await workItemFormService.getFieldValue('Custom.Codenames')) as string;
-    if (current.length < 1)
-    {
-      workItemFormService.setFieldValue(
-        "Custom.Codenames",
-        `${Math.floor(Math.random() * 100) + 1}`
-      );
-    }
+
+    var wordFirst = capitalizeFirstLetter(getRandomOfArray(this.state.adjectives_verbs[0]));
+    var wordSecond = capitalizeFirstLetter(getRandomOfArray(this.state.nouns[0]));
+
+    workItemFormService.setFieldValue(
+      "Custom.Codenames", `${wordFirst} ${wordSecond}`
+    );
   }
+
+
 
   private async onClickGet() {
     const workItemFormService = await SDK.getService<IWorkItemFormService>(
       WorkItemTrackingServiceIds.WorkItemFormService
     );
-    const workItemId = (await workItemFormService.getFieldValue('System.Id')) as string;
-    this.setState({id: `id is ${workItemId}`})
-    output(JSON.stringify(this.state));
+    
+    //const workItemId = (await workItemFormService.getFieldValue('System.Id')) as string;
+    //this.setState({id: `id is ${workItemId}`})
+    //output(JSON.stringify(this.state));
   }
 
   private async onClickGetFields() {
